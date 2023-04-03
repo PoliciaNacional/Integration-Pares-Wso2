@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="TreatXMLSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <xslt key="RM_namespace"/>
+    <xslt key="RM_comments"/>
+</sequence>

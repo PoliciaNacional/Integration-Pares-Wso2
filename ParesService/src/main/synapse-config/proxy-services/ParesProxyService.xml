@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="ParesProxyService" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <sequence key="TreatXMLSEQ"/>
+            <sequence key="RemoveEmptyTagXMLSEQ"/>
+            <log level="full"/>
+            <property description="operation" expression="local-name(/soapenv:Envelope/soapenv:Body/*[position()=1])" name="operation" scope="default" type="STRING" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"/>
+            <sequence key="TreatXMLSEQ"/>
+            <switch source="$ctx:operation">
+                <case regex="ImpedimentsRequest">
+                    <log category="WARN" level="custom">
+                        <property name="CASE" value="IMPEDIMENTS_REQUEST"/>
+                    </log>
+                    <validate cache-schema="true" source="/soap:Envelope/soap:Body/ImpedimentsRequest" xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                        <schema key="conf:repository/esb/registry/pares.xsd"/>
+                        <on-fail>
+                            <call-template target="faultPares">
+                                <with-param name="position" value="validator"/>
+                                <with-param name="text" value="{$ctx:ERROR_MESSAGE}"/>
+                            </call-template>
+                        </on-fail>
+                    </validate>
+                    <property description="userid" name="userid" scope="default" type="STRING" value="POPDEF\nelson.d.oliveira"/>
+                    <payloadFactory media-type="xml">
+                        <format>
+                            <soap:Envelope xmlns:def="http://schemas.datacontract.org/2004/07/DEFServices" xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:srv="http://srv.def.cv">
+                                <soap:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+                                    <wsa:Action>$1</wsa:Action>
+                                    <wsa:To>https://10.73.224.8/DEFServices/mc.svc</wsa:To>
+                                </soap:Header>
+                                <soap:Body>
+                                    <srv:Pesquisa>
+                                        <srv:DadosPesquisa>
+                                            <def:Documento>
+                                                <def:NumeroDocumento>$2</def:NumeroDocumento>
+                                                <def:PaisEmissor>$3</def:PaisEmissor>
+                                                <def:TipoDocumento>$4</def:TipoDocumento>
+                                            </def:Documento>
+                                            <def:Identificacao>
+                                                <def:Apelido>$5</def:Apelido>
+                                                <def:DataNascimento>$6</def:DataNascimento>
+                                                <def:Nome>$7</def:Nome>
+                                            </def:Identificacao>
+                                            <def:Utilizador>$8</def:Utilizador>
+                                        </srv:DadosPesquisa>
+                                    </srv:Pesquisa>
+                                </soap:Body>
+                            </soap:Envelope>
+                        </format>
+                        <args>
+                            <arg value="http://srv.def.cv/Imc/Pesquisa"/>
+                            <arg evaluator="xml" expression="/soap:Envelope/soap:Body/ImpedimentsRequest/DocumentNumber" xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"/>
+                            <arg evaluator="xml" expression="/soap:Envelope/soap:Body/ImpedimentsRequest/EmittingCountry" xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"/>
+                            <arg evaluator="xml" expression="/soap:Envelope/soap:Body/ImpedimentsRequest/DocumentType" xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"/>
+                            <arg evaluator="xml" expression="/soap:Envelope/soap:Body/ImpedimentsRequest/Surnames" xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"/>
+                            <arg evaluator="xml" expression="/soap:Envelope/soap:Body/ImpedimentsRequest/BirthDate" xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"/>
+                            <arg evaluator="xml" expression="/soap:Envelope/soap:Body/ImpedimentsRequest/GivenNames" xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"/>
+                            <arg value="POPDEF\nelson.d.oliveira"/>
+                        </args>
+                    </payloadFactory>
+                    <sequence key="RemoveEmptyTagXMLSEQ"/>
+                    <script language="js"><![CDATA[var password = "Def_PIO2020";
+var username = "PIOUser";
+mc.addHeader(true,
+<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+<wsse:UsernameToken>       
+<wsse:Username>
+{username}
+</wsse:Username>
+<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">
+{password}
+</wsse:Password>
+</wsse:UsernameToken>
+</wsse:Security>);]]></script>
+                    <sequence key="WsAdressingSEQ"/>
+                    <log category="WARN" level="full"/>
+                    <call>
+                        <endpoint key="SidefPares_EP"/>
+                    </call>
+                    <xslt key="RM_namespace"/>
+                    <xslt key="RM_emptyTags"/>
+                    <log category="WARN" level="full"/>
+                    <property expression="//Fault" name="fault" scope="default" type="STRING"/>
+                    <filter xpath="boolean($ctx:fault='')">
+                        <then>
+                            <property description="BODY" expression="$body" name="BODY" scope="default" type="OM"/>
+                            <sequence key="ZetesSEQ"/>
+                        </then>
+                        <else>
+                            <log level="full"/>
+                            <makefault version="soap12">
+                                <code value="soap12Env:Sender" xmlns:soap12Env="http://www.w3.org/2003/05/soap-envelope"/>
+                                <reason value="internal error sidef"/>
+                            </makefault>
+                        </else>
+                    </filter>
+                    <respond/>
+                </case>
+                <case regex="recordBorderCrossing">
+                    <log category="WARN" level="custom">
+                        <property name="CASE" value="BORDER_CROSSING"/>
+                    </log>
+                    <log category="WARN" level="full"/>
+                    <property description="recordBorderCrossing" expression="$body//recordBorderCrossing" name="recordBorderCrossing" scope="default" type="OM"/>
+                    <sequence key="ValidateBorderCrossing_SEQ"/>
+                    <sequence key="SaveBorderCrossing_SEQ"/>
+                    <filter xpath="$ctx:ID!=''">
+                        <then>
+                            <sequence key="BorderCrossingSidefSEQ"/>
+                        </then>
+                        <else>
+                            <call-template description="Error" target="ResponseBorderCrossing">
+                                <with-param name="status" value="false"/>
+                                <with-param name="text" value="error creating"/>
+                                <with-param name="details" value="{$ctx:ERROR_MESSAGE}"/>
+                            </call-template>
+                        </else>
+                    </filter>
+                    <respond/>
+                </case>
+                <default>
+                    <payloadFactory media-type="xml">
+                        <format>
+                            <ResponsePassenger>
+                                <status>true</status>
+                                <statusText>Sucesso</statusText>
+                            </ResponsePassenger>
+                        </format>
+                        <args/>
+                    </payloadFactory>
+                    <property name="messageType" scope="axis2" type="STRING" value="application/soap+xml"/>
+                    <respond/>
+                </default>
+            </switch>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+    <publishWSDL key="ParesServicewsdl" preservePolicy="true"/>
+    <policy key="MutualSSLPolicy"/>
+    <parameter name="disableSOAP11">true</parameter>
+    <enableSec/>
+</proxy>

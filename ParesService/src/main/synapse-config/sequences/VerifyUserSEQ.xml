@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="VerifyUserSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property description="user" expression="/soap:Envelope/soap:Body/ImpedimentsRequest/User" name="user" scope="default" type="STRING" xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"/>
+    <dblookup>
+        <connection>
+            <pool>
+                <driver>org.postgresql.Driver</driver>
+                <url>jdbc:postgresql://10.72.209.242:5432/tre</url>
+                <user>user_tre</user>
+                <password>XjS9pFVp</password>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[SELECT id FROM public.sidef_pares where user_pares=? and status='A';]]></sql>
+            <parameter expression="$ctx:user" type="VARCHAR"/>
+            <result column="id" name="userid"/>
+        </statement>
+    </dblookup>
+</sequence>

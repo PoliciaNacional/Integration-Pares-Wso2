@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="WsAdressingSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+    <property name="messageType" scope="axis2" type="STRING" value="application/soap+xml"/>
+    <property name="PRESERVE_WS_ADDRESSING" scope="default" type="STRING" value="true"/>
+</sequence>

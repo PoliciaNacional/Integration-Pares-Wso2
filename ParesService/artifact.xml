@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="ParesServicewsdl" groupId="com.example.ParesService.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/ParesServicewsdl.xml</file>
+    </artifact>
+    <artifact name="ParesProxyService" groupId="com.example.ParesService.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/ParesProxyService.xml</file>
+    </artifact>
+    <artifact name="RM_namespace" groupId="com.example.ParesService.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/RM_namespace.xml</file>
+    </artifact>
+    <artifact name="SidefPares_EP" groupId="com.example.ParesService.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SidefPares_EP.xml</file>
+    </artifact>
+    <artifact name="RM_comments" groupId="com.example.ParesService.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/RM_comments.xml</file>
+    </artifact>
+    <artifact name="RM_emptyTags" groupId="com.example.ParesService.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/RM_emptyTags.xml</file>
+    </artifact>
+    <artifact name="faultPares" groupId="com.example.ParesService.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/faultPares.xml</file>
+    </artifact>
+    <artifact name="ZetesSEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/ZetesSEQ.xml</file>
+    </artifact>
+    <artifact name="ZetesTemp" groupId="com.example.ParesService.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/ZetesTemp.xml</file>
+    </artifact>
+    <artifact name="ResponseZetesSEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/ResponseZetesSEQ.xml</file>
+    </artifact>
+    <artifact name="MutualSSLPolicy" groupId="com.example.ParesService.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/MutualSSLPolicy.xml</file>
+    </artifact>
+    <artifact name="TreatXMLSEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/TreatXMLSEQ.xml</file>
+    </artifact>
+    <artifact name="RemoveEmptyTagXMLSEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/RemoveEmptyTagXMLSEQ.xml</file>
+    </artifact>
+    <artifact name="VerifyUserSEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/VerifyUserSEQ.xml</file>
+    </artifact>
+    <artifact name="WsAdressingSEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/WsAdressingSEQ.xml</file>
+    </artifact>
+    <artifact name="BorderCrossingDss_EP" groupId="com.example.ParesService.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/BorderCrossingDss_EP.xml</file>
+    </artifact>
+    <artifact name="SaveBorderCrossing_SEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/SaveBorderCrossing_SEQ.xml</file>
+    </artifact>
+    <artifact name="ResponseBorderCrossing" groupId="com.example.ParesService.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/ResponseBorderCrossing.xml</file>
+    </artifact>
+    <artifact name="ValidateBorderCrossing_SEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/ValidateBorderCrossing_SEQ.xml</file>
+    </artifact>
+    <artifact name="BorderCrossingXSD" groupId="com.example.ParesService.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/BorderCrossingXSD.xml</file>
+    </artifact>
+    <artifact name="BorderCrossingSidefSEQ" groupId="com.example.ParesService.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/BorderCrossingSidefSEQ.xml</file>
+    </artifact>
+    <artifact name="DEFServicesBCS" groupId="com.example.ParesService.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/DEFServicesBCS.xml</file>
+    </artifact>
+</artifacts>

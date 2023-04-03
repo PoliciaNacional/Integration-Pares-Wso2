@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="BorderCrossingSidefSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log category="WARN" level="custom">
+        <property name="SequenceName" value="BorderCrossingSIIDEF"/>
+    </log>
+    <enrich description="Repor o contexto de entrada">
+        <source clone="true" property="recordBorderCrossing" type="property"/>
+        <target type="body"/>
+    </enrich>
+    <log level="full"/>
+    <payloadFactory media-type="xml">
+        <format>
+            <soap:Envelope xmlns:def="http://schemas.datacontract.org/2004/07/DEFServices" xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:srv="http://srv.def.cv">
+                <soap:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+                    <wsa:Action>http://srv.def.cv/Ibcs/RecordBorderCrossing</wsa:Action>
+                    <wsa:To>https://10.73.224.15/DEFServicesDEV/bcs.svc</wsa:To>
+                </soap:Header>
+                <soap:Body>
+                    <srv:RecordBorderCrossing>
+                        <srv:BorderCrossingData>
+                            <def:ADUserName>$1</def:ADUserName>
+                            <def:BorderPostID>$2</def:BorderPostID>
+                            <def:DateOfBirth>$3</def:DateOfBirth>
+                            <def:DateOfExpiry>$4</def:DateOfExpiry>
+                            <def:DateOfIssue>$5</def:DateOfIssue>
+                            <def:DateOfRegister>$6</def:DateOfRegister>
+                            <def:Decision>$7</def:Decision>
+                            <def:DocumentCountryID>$8</def:DocumentCountryID>
+                            <def:DocumentNumber>$9</def:DocumentNumber>
+                            <def:DocumentTypeID>$10</def:DocumentTypeID>
+                            <def:EntranceMotiveID>$11</def:EntranceMotiveID>
+                            <def:FlightID>
+                                <def:Airport>$12</def:Airport>
+                                <def:Direction>$13</def:Direction>
+                                <def:Number>$14</def:Number>
+                                <def:OriginDestination>$15</def:OriginDestination>
+                            </def:FlightID>
+                            <def:GivenName>$16</def:GivenName>
+                            <def:ID>$17</def:ID>
+                            <def:NationalityCV>$18</def:NationalityCV>
+                            <def:NationalityID>$19</def:NationalityID>
+                            <def:RegisterMode>$20</def:RegisterMode>
+                            <def:RegisterType>$21</def:RegisterType>
+                            <def:Remarks>$22</def:Remarks>
+                            <def:Sex>$23</def:Sex>
+                            <def:State>$24</def:State>
+                            <def:Surname>$25</def:Surname>
+                        </srv:BorderCrossingData>
+                    </srv:RecordBorderCrossing>
+                </soap:Body>
+            </soap:Envelope>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="//adUsername/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//borderPostId/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//dateOfBirth/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//dateOfExpiry/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//dateOfIssue/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//dateOfRegister/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//decision/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//countryId/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//documentNumber/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//documentTypeId/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//idMotiveEntrance/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//airport/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//direction/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//flightNumber/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//originDestination/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//giverName/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//id/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//nationalityCv/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//nationalityId/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//registerMode/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//registerType/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//remarks/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//sex/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//state/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <arg evaluator="xml" expression="//surname/text()" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+        </args>
+    </payloadFactory>
+    <sequence key="RemoveEmptyTagXMLSEQ"/>
+    <script language="js"><![CDATA[var password = "Teste/2019";
+var username = "PIOUser";
+mc.addHeader(true,
+<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+<wsse:UsernameToken>       
+<wsse:Username>
+{username}
+</wsse:Username>
+<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">
+{password}
+</wsse:Password>
+</wsse:UsernameToken>
+</wsse:Security>);]]></script>
+    <sequence key="WsAdressingSEQ"/>
+    <log category="WARN" level="full"/>
+    <call>
+        <endpoint key="DEFServicesBCS"/>
+    </call>
+    <log level="full"/>
+</sequence>

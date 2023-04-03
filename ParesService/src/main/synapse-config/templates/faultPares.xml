@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="faultPares" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="position"/>
+    <parameter defaultValue="" isMandatory="false" name="text"/>
+    <sequence>
+        <log level="full"/>
+        <payloadFactory media-type="xml">
+            <format>
+                <response xmlns="">
+                    <statusPosition>$1</statusPosition>
+                    <status>$2</status>
+                    <statusText>$3</statusText>
+                </response>
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:position"/>
+                <arg value="false"/>
+                <arg evaluator="xml" expression="$func:text"/>
+            </args>
+        </payloadFactory>
+        <property name="messageType" scope="axis2" type="STRING" value="application/xml"/>
+        <respond/>
+    </sequence>
+</template>

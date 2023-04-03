@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="ResponseZetesSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="xml">
+        <format>
+            <soapenv:Envelope xmlns:def="http://def.cv" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <def:ImpedimentsResponse>
+                        <def:DocumentsResponse>$1</def:DocumentsResponse>
+                        <def:IdentificationResponse>$2</def:IdentificationResponse>
+                    </def:ImpedimentsResponse>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:concatdoc"/>
+            <arg evaluator="xml" expression="$ctx:concatidentification"/>
+        </args>
+    </payloadFactory>
+    <property description="Zetes" expression="$body" name="Zetes" scope="default" type="OM"/>
+    <log level="full"/>
+</sequence>

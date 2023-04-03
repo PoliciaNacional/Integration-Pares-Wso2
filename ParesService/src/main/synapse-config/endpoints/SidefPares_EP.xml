@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="SidefPares_EP" xmlns="http://ws.apache.org/ns/synapse">
+    <address statistics="enable" uri="https://10.73.224.8/DEFServices/mc.svc">
+        <timeout>
+            <duration>600000</duration>
+        </timeout>
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </address>
+</endpoint>

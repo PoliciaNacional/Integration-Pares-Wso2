@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="ResponseBorderCrossing" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="status"/>
+    <parameter defaultValue="" isMandatory="false" name="text"/>
+    <parameter defaultValue="" isMandatory="false" name="details"/>
+    <sequence>
+        <log level="custom">
+            <property name="Template" value="RESPONSE"/>
+        </log>
+        <payloadFactory media-type="xml">
+            <format>
+                <soap:Envelope xmlns:def="http://def.cv" xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                    <soap:Header/>
+                    <soap:Body>
+                        <def:recordBorderCrossingResponse>
+                            <def:borderCrossing>
+                                <def:status>$1</def:status>
+                                <def:statusText>$2</def:statusText>
+                                <def:details>$3</def:details>
+                            </def:borderCrossing>
+                        </def:recordBorderCrossingResponse>
+                    </soap:Body>
+                </soap:Envelope>
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:status"/>
+                <arg evaluator="xml" expression="$func:text"/>
+                <arg evaluator="xml" expression="$func:details"/>
+            </args>
+        </payloadFactory>
+        <property name="messageType" scope="axis2" type="STRING" value="application/xml"/>
+    </sequence>
+</template>

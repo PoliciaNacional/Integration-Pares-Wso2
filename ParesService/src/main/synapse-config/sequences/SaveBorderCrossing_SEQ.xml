@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SaveBorderCrossing_SEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header name="Action" scope="default" value="urn:insert_bordercrossing_operation"/>
+    <payloadFactory description="Insert Border Crossing data in DB" media-type="xml">
+        <format>
+            <soapenv:Envelope xmlns:def="http://def.cv" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <def:insert_bordercrossing_operation>
+                        <def:adusername>$1</def:adusername>
+                        <def:borderpostid>$2</def:borderpostid>
+                        <def:countryid>$3</def:countryid>
+                        <def:dateofbirth>$4</def:dateofbirth>
+                        <def:dateofexpiry>$5</def:dateofexpiry>
+                        <def:dateofissue>$6</def:dateofissue>
+                        <def:dateofregister>$7</def:dateofregister>
+                        <def:decision>$8</def:decision>
+                        <def:documentnumber>$9</def:documentnumber>
+                        <def:documenttypeid>$10</def:documenttypeid>
+                        <def:flightnumber>$11</def:flightnumber>
+                        <def:airport>$12</def:airport>
+                        <def:origin_destination>$13</def:origin_destination>
+                        <def:direction>$14</def:direction>
+                        <def:givenname>$15</def:givenname>
+                        <def:idborder>$16</def:idborder>
+                        <def:idmotiveentrance>$17</def:idmotiveentrance>
+                        <def:nationalitycv>$18</def:nationalitycv>
+                        <def:nationalityid>$19</def:nationalityid>
+                        <def:observations>$20</def:observations>
+                        <def:registemode>$21</def:registemode>
+                        <def:registertype>$22</def:registertype>
+                        <def:sex>$23</def:sex>
+                        <def:state>$24</def:state>
+                        <def:surname>$25</def:surname>
+                        <def:watchlistid>$26</def:watchlistid>
+                        <def:photo>$27</def:photo>
+                        <def:datapage>$28</def:datapage>
+                        <def:facecapture>$29</def:facecapture>
+                    </def:insert_bordercrossing_operation>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="//adUsername"/>
+            <arg evaluator="xml" expression="//borderPostId"/>
+            <arg evaluator="xml" expression="//countryId"/>
+            <arg evaluator="xml" expression="//dateOfBirth"/>
+            <arg evaluator="xml" expression="//dateOfExpiry"/>
+            <arg evaluator="xml" expression="//dateOfIssue"/>
+            <arg evaluator="xml" expression="//dateOfRegister"/>
+            <arg evaluator="xml" expression="//decision"/>
+            <arg evaluator="xml" expression="//documentNumber"/>
+            <arg evaluator="xml" expression="//documentTypeId"/>
+            <arg evaluator="xml" expression="//fligth/flightNumber"/>
+            <arg evaluator="xml" expression="//fligth/airport"/>
+            <arg evaluator="xml" expression="//fligth/originDestination"/>
+            <arg evaluator="xml" expression="//fligth/direction"/>
+            <arg evaluator="xml" expression="//giverName"/>
+            <arg evaluator="xml" expression="//id"/>
+            <arg evaluator="xml" expression="//idMotiveEntrance"/>
+            <arg evaluator="xml" expression="//nationalityCv"/>
+            <arg evaluator="xml" expression="//nationalityId"/>
+            <arg evaluator="xml" expression="//observations"/>
+            <arg evaluator="xml" expression="//registerMode"/>
+            <arg evaluator="xml" expression="//registerType"/>
+            <arg evaluator="xml" expression="//sex"/>
+            <arg evaluator="xml" expression="//state"/>
+            <arg evaluator="xml" expression="//surname"/>
+            <arg evaluator="xml" expression="//watchListId"/>
+            <arg evaluator="xml" expression="//photo"/>
+            <arg evaluator="xml" expression="//dataPage"/>
+            <arg evaluator="xml" expression="//faceCapture"/>
+        </args>
+    </payloadFactory>
+    <log level="full"/>
+    <call>
+        <endpoint key="BorderCrossingDss_EP"/>
+    </call>
+    <log category="WARN" level="full"/>
+    <property description="ID" expression="//def:insert_bordercrossing_element/def:ID" name="ID" scope="default" type="STRING" xmlns:def="http://def.cv" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+</sequence>

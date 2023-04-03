@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="ZetesSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <enrich>
+        <source clone="true" xpath="$ctx:BODY"/>
+        <target type="body"/>
+    </enrich>
+    <property description="DocumentoRetornoType" expression="count(//DocumentoRetornoType)" name="DocumentoRetornoType" scope="default" type="STRING" xmlns:s="http://www.w3.org/2003/05/soap-envelope"/>
+    <property description="ResultadoPesquisaIdentificacaoType" expression="count(//ResultadoPesquisaIdentificacaoType)" name="ResultadoPesquisaIdentificacaoType" scope="default" type="STRING" xmlns:s="http://www.w3.org/2003/05/soap-envelope"/>
+    <log level="custom">
+        <property expression="$ctx:ResultadoPesquisaIdentificacaoType" name="ResultadoPesquisaIdentificacaoType"/>
+        <property expression="$ctx:DocumentoRetornoType" name="DocumentoRetornoType"/>
+    </log>
+    <foreach expression="//DocumentoRetornoType" id="idDoc" xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+        <sequence>
+            <payloadFactory media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:def="http://def.cv" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <def:Impediments>
+                                <def:DocumentNumber>$1</def:DocumentNumber>
+                                <def:CountryEmitter>$2</def:CountryEmitter>
+                                <def:Measure>$3</def:Measure>
+                            </def:Impediments>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="//NumeroDocumento"/>
+                    <arg evaluator="xml" expression="//PaisEmissor"/>
+                    <arg value="Documento com medida cautelar"/>
+                </args>
+            </payloadFactory>
+            <property description="document" expression="/soapenv:Envelope/soapenv:Body/def:Impediments" name="document" scope="default" type="STRING" xmlns:def="http://def.cv" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <property description="concatdoc" expression="fn:concat($ctx:document,$ctx:concatdoc)" name="concatdoc" scope="default" type="STRING"/>
+        </sequence>
+    </foreach>
+    <enrich>
+        <source clone="true" xpath="$ctx:BODY"/>
+        <target type="body"/>
+    </enrich>
+    <foreach expression="//ResultadoPesquisaIdentificacaoType" id="idResultadoPesquisaIdentificacaoType" xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+        <sequence>
+            <payloadFactory media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:def="http://def.cv" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <def:Impediments>
+                                <def:Surnames>$1</def:Surnames>
+                                <def:GivenNames>$2</def:GivenNames>
+                                <def:Nationality>$3</def:Nationality>
+                                <def:BirthDate>$4</def:BirthDate>
+                                <def:Measure>$5</def:Measure>
+                            </def:Impediments>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="//Apelido"/>
+                    <arg evaluator="xml" expression="//Nome"/>
+                    <arg evaluator="xml" expression="//Nacionalidade"/>
+                    <arg evaluator="xml" expression="fn:substring(//DataNascimento,1,10)"/>
+                    <arg evaluator="xml" expression="//MedidaCautelar"/>
+                </args>
+            </payloadFactory>
+            <property description="identification" expression="/soapenv:Envelope/soapenv:Body/def:Impediments" name="identification" scope="default" type="STRING" xmlns:def="http://def.cv" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+            <property description="concatidentification" expression="fn:concat($ctx:identification,$ctx:concatidentification)" name="concatidentification" scope="default" type="STRING"/>
+        </sequence>
+    </foreach>
+    <sequence key="ResponseZetesSEQ"/>
+</sequence>

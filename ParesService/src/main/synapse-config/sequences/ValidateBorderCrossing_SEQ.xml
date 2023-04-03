@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="ValidateBorderCrossing_SEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <validate cache-schema="true" source="//borderCrossing">
+        <schema key="BorderCrossingXSD"/>
+        <on-fail>
+            <call-template description="Fault" target="ResponseBorderCrossing">
+                <with-param name="status" value="false"/>
+                <with-param name="text" value="error when validating xml"/>
+                <with-param name="details" value="{$ctx:ERROR_MESSAGE}"/>
+            </call-template>
+            <respond/>
+        </on-fail>
+    </validate>
+</sequence>

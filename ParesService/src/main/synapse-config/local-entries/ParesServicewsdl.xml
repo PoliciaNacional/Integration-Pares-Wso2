@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="ParesServicewsdl" xmlns="http://ws.apache.org/ns/synapse">
+    <wsdl:definitions targetNamespace="http://def.cv" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns0="http://def.cv" xmlns:ns1="http://ws.wso2.org/dataservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <wsdl:types>
+            <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://def.cv">
+                <xs:element name="ImpedimentsRequest">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Surnames" type="xs:string"/>
+                            <xs:element name="GivenNames" type="xs:string"/>
+                            <xs:element name="DocumentNumber" type="xs:string"/>
+                            <xs:element minOccurs="0" name="Nationality" type="ns0:CountryCode"/>
+                            <xs:element minOccurs="0" name="BirthDate" type="xs:date"/>
+                            <xs:element name="User" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ImpedimentsResponse">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="DocumentsResponse">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0" name="Impediments">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="DocumentNumber" type="xs:string"/>
+                                                    <xs:element name="CountryEmitter" type="ns0:CountryCode"/>
+                                                    <xs:element name="Measure" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="IdentificationResponse">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0" name="Impediments">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Surnames" type="xs:string"/>
+                                                    <xs:element name="GivenNames" type="xs:string"/>
+                                                    <xs:element name="Nationality" type="ns0:CountryCode"/>
+                                                    <xs:element name="BirthDate" type="xs:date"/>
+                                                    <xs:element name="Measure" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:simpleType name="CountryCode">
+                    <xs:annotation>
+                        <xs:documentation>                        CountryCode according to the Passport CountryCode                        (ISO 3166-1 alpha-3 except for Germany:                        https://en.wikipedia.org/wiki/German_passport                        "The country code is not DEU as is the standard country code for Germany (according to ISO                        3166-1                        alpha-3), but D. This is the only country/citizen code which does not consist of 3 letters."                        )                    </xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="ABW"/>
+                        <xs:enumeration value="AFG"/>
+                        <xs:enumeration value="AGO"/>
+                        <xs:enumeration value="AIA"/>
+                        <xs:enumeration value="ALA"/>
+                        <xs:enumeration value="ALB"/>
+                        <xs:enumeration value="AND"/>
+                        <xs:enumeration value="ANT"/>
+                        <xs:enumeration value="ARE"/>
+                        <xs:enumeration value="ARG"/>
+                        <xs:enumeration value="ARM"/>
+                        <xs:enumeration value="ASM"/>
+                        <xs:enumeration value="ATA"/>
+                        <xs:enumeration value="ATF"/>
+                        <xs:enumeration value="ATG"/>
+                        <xs:enumeration value="AUS"/>
+                        <xs:enumeration value="AUT"/>
+                        <xs:enumeration value="AZE"/>
+                        <xs:enumeration value="BDI"/>
+                        <xs:enumeration value="BEL"/>
+                        <xs:enumeration value="BEN"/>
+                        <xs:enumeration value="BES"/>
+                        <xs:enumeration value="BFA"/>
+                        <xs:enumeration value="BGD"/>
+                        <xs:enumeration value="BGR"/>
+                        <xs:enumeration value="BHR"/>
+                        <xs:enumeration value="BHS"/>
+                        <xs:enumeration value="BIH"/>
+                        <xs:enumeration value="BLM"/>
+                        <xs:enumeration value="BLR"/>
+                        <xs:enumeration value="BLZ"/>
+                        <xs:enumeration value="BMU"/>
+                        <xs:enumeration value="BOL"/>
+                        <xs:enumeration value="BRA"/>
+                        <xs:enumeration value="BRB"/>
+                        <xs:enumeration value="BRN"/>
+                        <xs:enumeration value="BTN"/>
+                        <xs:enumeration value="BVT"/>
+                        <xs:enumeration value="BWA"/>
+                        <xs:enumeration value="CAF"/>
+                        <xs:enumeration value="CAN"/>
+                        <xs:enumeration value="CCK"/>
+                        <xs:enumeration value="CHE"/>
+                        <xs:enumeration value="CHL"/>
+                        <xs:enumeration value="CHN"/>
+                        <xs:enumeration value="CIV"/>
+                        <xs:enumeration value="CMR"/>
+                        <xs:enumeration value="COD"/>
+                        <xs:enumeration value="COG"/>
+                        <xs:enumeration value="COK"/>
+                        <xs:enumeration value="COL"/>
+                        <xs:enumeration value="COM"/>
+                        <xs:enumeration value="CPV"/>
+                        <xs:enumeration value="CRI"/>
+                        <xs:enumeration value="CUB"/>
+                        <xs:enumeration value="CUW"/>
+                        <xs:enumeration value="CXR"/>
+                        <xs:enumeration value="CYM"/>
+                        <xs:enumeration value="CYP"/>
+                        <xs:enumeration value="CZE"/>
+                        <xs:enumeration value="D"/>
+                        <xs:enumeration value="DJI"/>
+                        <xs:enumeration value="DMA"/>
+                        <xs:enumeration value="DNK"/>
+                        <xs:enumeration value="DOM"/>
+                        <xs:enumeration value="DZA"/>
+                        <xs:enumeration value="ECU"/>
+                        <xs:enumeration value="EGY"/>
+                        <xs:enumeration value="ERI"/>
+                        <xs:enumeration value="ESH"/>
+                        <xs:enumeration value="ESP"/>
+                        <xs:enumeration value="EST"/>
+                        <xs:enumeration value="ETH"/>
+                        <xs:enumeration value="EUE"/>
+                        <xs:enumeration value="FIN"/>
+                        <xs:enumeration value="FJI"/>
+                        <xs:enumeration value="FLK"/>
+                        <xs:enumeration value="FRA"/>
+                        <xs:enumeration value="FRO"/>
+                        <xs:enumeration value="FSM"/>
+                        <xs:enumeration value="GAB"/>
+                        <xs:enumeration value="GBD"/>
+                        <xs:enumeration value="GBN"/>
+                        <xs:enumeration value="GBO"/>
+                        <xs:enumeration value="GBP"/>
+                        <xs:enumeration value="GBR"/>
+                        <xs:enumeration value="GBS"/>
+                        <xs:enumeration value="GEO"/>
+                        <xs:enumeration value="GGY"/>
+                        <xs:enumeration value="GHA"/>
+                        <xs:enumeration value="GIB"/>
+                        <xs:enumeration value="GIN"/>
+                        <xs:enumeration value="GLP"/>
+                        <xs:enumeration value="GMB"/>
+                        <xs:enumeration value="GNB"/>
+                        <xs:enumeration value="GNQ"/>
+                        <xs:enumeration value="GRC"/>
+                        <xs:enumeration value="GRD"/>
+                        <xs:enumeration value="GRL"/>
+                        <xs:enumeration value="GTM"/>
+                        <xs:enumeration value="GUF"/>
+                        <xs:enumeration value="GUM"/>
+                        <xs:enumeration value="GUY"/>
+                        <xs:enumeration value="HKG"/>
+                        <xs:enumeration value="HMD"/>
+                        <xs:enumeration value="HND"/>
+                        <xs:enumeration value="HRV"/>
+                        <xs:enumeration value="HTI"/>
+                        <xs:enumeration value="HUN"/>
+                        <xs:enumeration value="IDN"/>
+                        <xs:enumeration value="IMN"/>
+                        <xs:enumeration value="IND"/>
+                        <xs:enumeration value="IOT"/>
+                        <xs:enumeration value="IRL"/>
+                        <xs:enumeration value="IRN"/>
+                        <xs:enumeration value="IRQ"/>
+                        <xs:enumeration value="ISL"/>
+                        <xs:enumeration value="ISR"/>
+                        <xs:enumeration value="ITA"/>
+                        <xs:enumeration value="JAM"/>
+                        <xs:enumeration value="JEY"/>
+                        <xs:enumeration value="JOR"/>
+                        <xs:enumeration value="JPN"/>
+                        <xs:enumeration value="KAZ"/>
+                        <xs:enumeration value="KEN"/>
+                        <xs:enumeration value="KGZ"/>
+                        <xs:enumeration value="KHM"/>
+                        <xs:enumeration value="KIR"/>
+                        <xs:enumeration value="KNA"/>
+                        <xs:enumeration value="KOR"/>
+                        <xs:enumeration value="KWT"/>
+                        <xs:enumeration value="LAO"/>
+                        <xs:enumeration value="LBN"/>
+                        <xs:enumeration value="LBR"/>
+                        <xs:enumeration value="LBY"/>
+                        <xs:enumeration value="LCA"/>
+                        <xs:enumeration value="LIE"/>
+                        <xs:enumeration value="LKA"/>
+                        <xs:enumeration value="LSO"/>
+                        <xs:enumeration value="LTU"/>
+                        <xs:enumeration value="LUX"/>
+                        <xs:enumeration value="LVA"/>
+                        <xs:enumeration value="MAC"/>
+                        <xs:enumeration value="MAF"/>
+                        <xs:enumeration value="MAR"/>
+                        <xs:enumeration value="MCO"/>
+                        <xs:enumeration value="MDA"/>
+                        <xs:enumeration value="MDG"/>
+                        <xs:enumeration value="MDV"/>
+                        <xs:enumeration value="MEX"/>
+                        <xs:enumeration value="MHL"/>
+                        <xs:enumeration value="MKD"/>
+                        <xs:enumeration value="MLI"/>
+                        <xs:enumeration value="MLT"/>
+                        <xs:enumeration value="MMR"/>
+                        <xs:enumeration value="MNE"/>
+                        <xs:enumeration value="MNG"/>
+                        <xs:enumeration value="MNP"/>
+                        <xs:enumeration value="MOZ"/>
+                        <xs:enumeration value="MRT"/>
+                        <xs:enumeration value="MSR"/>
+                        <xs:enumeration value="MTQ"/>
+                        <xs:enumeration value="MUS"/>
+                        <xs:enumeration value="MWI"/>
+                        <xs:enumeration value="MYS"/>
+                        <xs:enumeration value="MYT"/>
+                        <xs:enumeration value="NAM"/>
+                        <xs:enumeration value="NCL"/>
+                        <xs:enumeration value="NER"/>
+                        <xs:enumeration value="NFK"/>
+                        <xs:enumeration value="NGA"/>
+                        <xs:enumeration value="NIC"/>
+                        <xs:enumeration value="NIU"/>
+                        <xs:enumeration value="NLD"/>
+                        <xs:enumeration value="NOR"/>
+                        <xs:enumeration value="NPL"/>
+                        <xs:enumeration value="NRU"/>
+                        <xs:enumeration value="NTZ"/>
+                        <xs:enumeration value="NZL"/>
+                        <xs:enumeration value="OMN"/>
+                        <xs:enumeration value="PAK"/>
+                        <xs:enumeration value="PAN"/>
+                        <xs:enumeration value="PCN"/>
+                        <xs:enumeration value="PER"/>
+                        <xs:enumeration value="PHL"/>
+                        <xs:enumeration value="PLW"/>
+                        <xs:enumeration value="PNG"/>
+                        <xs:enumeration value="POL"/>
+                        <xs:enumeration value="PRI"/>
+                        <xs:enumeration value="PRK"/>
+                        <xs:enumeration value="PRT"/>
+                        <xs:enumeration value="PRY"/>
+                        <xs:enumeration value="PSE"/>
+                        <xs:enumeration value="PYF"/>
+                        <xs:enumeration value="QAT"/>
+                        <xs:enumeration value="REU"/>
+                        <xs:enumeration value="ROU"/>
+                        <xs:enumeration value="RUS"/>
+                        <xs:enumeration value="RWA"/>
+                        <xs:enumeration value="SAU"/>
+                        <xs:enumeration value="SDN"/>
+                        <xs:enumeration value="SEN"/>
+                        <xs:enumeration value="SGP"/>
+                        <xs:enumeration value="SGS"/>
+                        <xs:enumeration value="SHN"/>
+                        <xs:enumeration value="SJM"/>
+                        <xs:enumeration value="SLB"/>
+                        <xs:enumeration value="SLE"/>
+                        <xs:enumeration value="SLV"/>
+                        <xs:enumeration value="SMR"/>
+                        <xs:enumeration value="SOM"/>
+                        <xs:enumeration value="SPM"/>
+                        <xs:enumeration value="SRB"/>
+                        <xs:enumeration value="SSD"/>
+                        <xs:enumeration value="STP"/>
+                        <xs:enumeration value="SUR"/>
+                        <xs:enumeration value="SVK"/>
+                        <xs:enumeration value="SVN"/>
+                        <xs:enumeration value="SWE"/>
+                        <xs:enumeration value="SWZ"/>
+                        <xs:enumeration value="SXM"/>
+                        <xs:enumeration value="SYC"/>
+                        <xs:enumeration value="SYR"/>
+                        <xs:enumeration value="TCA"/>
+                        <xs:enumeration value="TCD"/>
+                        <xs:enumeration value="TGO"/>
+                        <xs:enumeration value="THA"/>
+                        <xs:enumeration value="TJK"/>
+                        <xs:enumeration value="TKL"/>
+                        <xs:enumeration value="TKM"/>
+                        <xs:enumeration value="TLS"/>
+                        <xs:enumeration value="TON"/>
+                        <xs:enumeration value="TTO"/>
+                        <xs:enumeration value="TUN"/>
+                        <xs:enumeration value="TUR"/>
+                        <xs:enumeration value="TUV"/>
+                        <xs:enumeration value="TWN"/>
+                        <xs:enumeration value="TZA"/>
+                        <xs:enumeration value="UGA"/>
+                        <xs:enumeration value="UKR"/>
+                        <xs:enumeration value="UMI"/>
+                        <xs:enumeration value="UNO"/>
+                        <xs:enumeration value="UNA"/>
+                        <xs:enumeration value="UNK"/>
+                        <xs:enumeration value="URY"/>
+                        <xs:enumeration value="USA"/>
+                        <xs:enumeration value="UZB"/>
+                        <xs:enumeration value="VAT"/>
+                        <xs:enumeration value="VCT"/>
+                        <xs:enumeration value="VEN"/>
+                        <xs:enumeration value="VGB"/>
+                        <xs:enumeration value="VIR"/>
+                        <xs:enumeration value="VNM"/>
+                        <xs:enumeration value="VUT"/>
+                        <xs:enumeration value="WLF"/>
+                        <xs:enumeration value="WSM"/>
+                        <xs:enumeration value="YEM"/>
+                        <xs:enumeration value="ZAF"/>
+                        <xs:enumeration value="ZMB"/>
+                        <xs:enumeration value="ZWE"/>
+                        <xs:enumeration value="XBA"/>
+                        <xs:enumeration value="XCC"/>
+                        <xs:enumeration value="XCE"/>
+                        <xs:enumeration value="XCO"/>
+                        <xs:enumeration value="XDC"/>
+                        <xs:enumeration value="XEC"/>
+                        <xs:enumeration value="XIM"/>
+                        <xs:enumeration value="XOM"/>
+                        <xs:enumeration value="XPO"/>
+                        <xs:enumeration value="XXA"/>
+                        <xs:enumeration value="XXB"/>
+                        <xs:enumeration value="XXC"/>
+                        <xs:enumeration value="XXX"/>
+                    </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType name="DocumentType">
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Undefined"/>
+                        <xs:enumeration value="Passport"/>
+                        <xs:enumeration value="DocumentIdentification"/>
+                        <xs:enumeration value="Visa"/>
+                        <xs:enumeration value="Others"/>
+                    </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType name="sexType">
+                    <xs:restriction base="xs:string">
+                        <xs:length value="1"/>
+                        <xs:pattern value="[MFX]"/>
+                    </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType name="directionType">
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="ARRIVAL"/>
+                        <xs:enumeration value="DEPARTURE"/>
+                    </xs:restriction>
+                </xs:simpleType>
+                <xs:element name="recordBorderCrossing">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="1" minOccurs="1" name="borderCrossing">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="adUsername" type="xs:string"/>
+                                        <xs:element name="borderPostId" type="xs:integer"/>
+                                        <xs:element name="countryId" type="xs:string"/>
+                                        <xs:element name="dateOfBirth" type="xs:date"/>
+                                        <xs:element name="dateOfExpiry" type="xs:date"/>
+                                        <xs:element name="dateOfIssue" type="xs:date"/>
+                                        <xs:element name="dateOfRegister" type="xs:dateTime"/>
+                                        <xs:element name="decision" type="xs:integer"/>
+                                        <xs:element name="documentNumber" type="xs:string"/>
+                                        <xs:element name="documentTypeId" type="xs:integer"/>
+                                        <xs:element name="fligth">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="flightNumber" type="xs:string"/>
+                                                    <xs:element name="airport" type="xs:string"/>
+                                                    <xs:element name="originDestination" type="xs:string"/>
+                                                    <xs:element name="direction" type="ns0:directionType"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="giverName" type="xs:string"/>
+                                        <xs:element name="id" type="xs:string"/>
+                                        <xs:element name="idMotiveEntrance" type="xs:integer"/>
+                                        <xs:element name="nationalityCv" type="xs:boolean"/>
+                                        <xs:element name="nationalityId" type="ns0:CountryCode"/>
+                                        <xs:element name="observations" type="xs:string"/>
+                                        <xs:element name="registerMode" type="xs:integer"/>
+                                        <xs:element name="registerType" type="xs:integer"/>
+                                        <xs:element name="sex" type="ns0:sexType"/>
+                                        <xs:element name="state" type="xs:integer"/>
+                                        <xs:element name="surname" type="xs:string"/>
+                                        <xs:element name="watchListId" type="xs:integer"/>
+                                        <xs:element maxOccurs="1" minOccurs="0" name="photo" type="xs:base64Binary"/>
+                                        <xs:element maxOccurs="1" minOccurs="0" name="dataPage" type="xs:base64Binary"/>
+                                        <xs:element maxOccurs="1" minOccurs="0" name="faceCapture" type="xs:base64Binary"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="recordBorderCrossingResponse">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="1" minOccurs="1" name="borderCrossing">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="status" type="xs:string"/>
+                                        <xs:element name="statusText" type="xs:string"/>
+                                        <xs:element name="deteails" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:schema>
+            <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ws.wso2.org/dataservice">
+                <xs:element name="DataServiceFault">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="current_params" type="xs:string"/>
+                            <xs:element name="current_request_name" type="xs:string"/>
+                            <xs:element name="nested_exception" type="xs:string"/>
+                            <xs:element name="source_data_service">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="location" type="xs:string"/>
+                                        <xs:element name="default_namespace" type="xs:string"/>
+                                        <xs:element name="description" type="xs:string"/>
+                                        <xs:element name="data_service_name" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ds_code" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="REQUEST_STATUS" type="xs:string"/>
+                <xs:element name="DATA_SERVICE_RESPONSE">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:any minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:schema>
+        </wsdl:types>
+        <wsdl:message name="ImpedimentsRequest">
+            <wsdl:part element="ns0:ImpedimentsRequest" name="parameters"/>
+        </wsdl:message>
+        <wsdl:message name="ImpedimentsResponse">
+            <wsdl:part element="ns0:ImpedimentsResponse" name="parameters"/>
+        </wsdl:message>
+        <wsdl:message name="recordBorderCrossingRequest">
+            <wsdl:part element="ns0:recordBorderCrossing" name="dados"/>
+        </wsdl:message>
+        <wsdl:message name="recordBorderCrossingResponse">
+            <wsdl:part element="ns0:recordBorderCrossingResponse" name="dados"/>
+        </wsdl:message>
+        <wsdl:message name="DataServiceFault">
+            <wsdl:part element="ns1:DataServiceFault" name="parameters"/>
+        </wsdl:message>
+        <wsdl:portType name="ParesServicePortType">
+            <wsdl:operation name="select_impediments_operation">
+                <wsdl:documentation/>
+                <wsdl:input message="ns0:ImpedimentsRequest" wsaw:Action="urn:select_impediments_operation"/>
+                <wsdl:output message="ns0:ImpedimentsResponse" wsaw:Action="urn:select_impediments_operationResponse"/>
+                <wsdl:fault message="ns0:DataServiceFault" name="DataServiceFault" wsaw:Action="urn:pares_operationDataServiceFault"/>
+            </wsdl:operation>
+            <wsdl:operation name="recordBorderCrossing">
+                <wsdl:documentation/>
+                <wsdl:input message="ns0:recordBorderCrossingRequest" wsaw:Action="urn:recordBorderCrossing"/>
+                <wsdl:output message="ns0:recordBorderCrossingResponse" wsaw:Action="urn:recordBorderCrossingResponse"/>
+                <wsdl:fault message="ns0:DataServiceFault" name="DataServiceFault" wsaw:Action="urn:pares_operationDataServiceFault"/>
+            </wsdl:operation>
+        </wsdl:portType>
+        <wsdl:binding name="ParesServiceSOAP12Binding" type="ns0:ParesServicePortType">
+            <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+            <wsdl:operation name="select_impediments_operation">
+                <soap12:operation soapAction="urn:select_impediments_operation" style="document"/>
+                <wsdl:input>
+                    <soap12:body use="literal"/>
+                </wsdl:input>
+                <wsdl:output>
+                    <soap12:body use="literal"/>
+                </wsdl:output>
+                <wsdl:fault name="DataServiceFault">
+                    <soap12:fault name="DataServiceFault" use="literal"/>
+                </wsdl:fault>
+            </wsdl:operation>
+            <wsdl:operation name="recordBorderCrossing">
+                <soap12:operation soapAction="urn:recordBorderCrossing" style="document"/>
+                <wsdl:input>
+                    <soap12:body use="literal"/>
+                </wsdl:input>
+                <wsdl:output>
+                    <soap12:body use="literal"/>
+                </wsdl:output>
+                <wsdl:fault name="DataServiceFault">
+                    <soap12:fault name="DataServiceFault" use="literal"/>
+                </wsdl:fault>
+            </wsdl:operation>
+        </wsdl:binding>
+        <wsdl:service name="ParesService">
+            <wsdl:port binding="ns0:ParesServiceSOAP12Binding" name="SecureSOAP12Endpoint">
+                <soap12:address location="https://wso2tre:8243/services/ParesService.SecureSOAP12Endpoint"/>
+            </wsdl:port>
+            <wsdl:port binding="ns0:ParesServiceSOAP12Binding" name="SOAP12Endpoint">
+                <soap12:address location="http://wso2tre:8280/services/ParesService.SOAP12Endpoint"/>
+            </wsdl:port>
+        </wsdl:service>
+    </wsdl:definitions>
+</localEntry>
