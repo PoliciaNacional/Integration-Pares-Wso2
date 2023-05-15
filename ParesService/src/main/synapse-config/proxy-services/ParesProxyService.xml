@@ -108,12 +108,23 @@ mc.addHeader(true,
                     <filter xpath="$ctx:ID!=''">
                         <then>
                             <sequence key="BorderCrossingSidefSEQ"/>
+                            <property expression="//Fault" name="fault" scope="default" type="STRING"/>
+                            <filter xpath="boolean($ctx:fault='')">
+                                <then/>
+                                <else>
+                                    <log level="full"/>
+                                    <makefault version="soap12">
+                                        <code value="soap12Env:Sender" xmlns:soap12Env="http://www.w3.org/2003/05/soap-envelope"/>
+                                        <reason value="internal error sidef"/>
+                                    </makefault>
+                                </else>
+                            </filter>
                         </then>
                         <else>
                             <call-template description="Error" target="ResponseBorderCrossing">
                                 <with-param name="status" value="false"/>
                                 <with-param name="text" value="error creating"/>
-                                <with-param name="details" value="{$ctx:ERROR_MESSAGE}"/>
+                                <with-param name="details" value="{/soapenv:Envelope/soapenv:Body/soapenv:Fault/detail/axis2ns20:DataServiceFault/axis2ns20:nested_exception}" xmlns:axis2ns20="http://ws.wso2.org/dataservice" xmlns:axis2ns21="http://ws.wso2.org/dataservice" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
                             </call-template>
                         </else>
                     </filter>
